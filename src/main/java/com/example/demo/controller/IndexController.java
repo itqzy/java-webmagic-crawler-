@@ -71,15 +71,22 @@ public class IndexController {
     public String gear(Model model) {
         List<Gear> gearList = iearService.getGearList();
         model.addAttribute("datas", gearList);
-      //  int i = iearService.startWebMagic();
 
         return "gear";
     }
 
 
+
+
+
     @GetMapping("/startWebMagic")
-    public String startWebMagic(Model model) {
-        int i = iearService.startWebMagic();
-        return "gear";
+    @ResponseBody
+    public Boolean  startWebMagic() {
+        try {
+            int i = iearService.startWebMagic();
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 }
