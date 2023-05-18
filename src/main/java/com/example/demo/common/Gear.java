@@ -21,6 +21,7 @@ public class Gear {
     private String headCount;
     private String gearToothMachining;
     private String gearPrecision;
+    private String img;
     private String remarks;
 
     public Integer getId() {
@@ -127,6 +128,14 @@ public class Gear {
         this.remarks = remarks;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Gear{" +
@@ -142,6 +151,7 @@ public class Gear {
                 ", headCount='" + headCount + '\'' +
                 ", gearToothMachining='" + gearToothMachining + '\'' +
                 ", gearPrecision='" + gearPrecision + '\'' +
+                ", img='" + img + '\'' +
                 ", remarks='" + remarks + '\'' +
                 '}';
     }

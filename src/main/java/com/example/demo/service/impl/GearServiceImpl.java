@@ -40,5 +40,10 @@ public class GearServiceImpl implements IGearService {
         return gearMapper.addGear(gear);
     }
 
+    @Override
+    public int clearData() {
+        return gearMapper.clearData();
+    }
+
 
 }

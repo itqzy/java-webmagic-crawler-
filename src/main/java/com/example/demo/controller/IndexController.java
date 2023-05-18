@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 
 /**
@@ -70,7 +72,15 @@ public class IndexController {
     @GetMapping("/gear")
     public String gear(Model model) {
         List<Gear> gearList = iearService.getGearList();
-        model.addAttribute("datas", gearList);
+        Map<Integer, List<Gear>> collect = gearList.stream().collect(Collectors.groupingBy(Gear::getType));
+
+        model.addAttribute("datas0", collect.get(0));
+        model.addAttribute("datas1", collect.get(1));
+        model.addAttribute("datas2", collect.get(2));
+        model.addAttribute("datas3", collect.get(3));
+        model.addAttribute("datas4", collect.get(4));
+        model.addAttribute("datas5", collect.get(5));
+        model.addAttribute("datas6", collect.get(6));
 
         return "gear";
     }
@@ -84,6 +94,18 @@ public class IndexController {
     public Boolean  startWebMagic() {
         try {
             int i = iearService.startWebMagic();
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+
+    @GetMapping("/clearData")
+    @ResponseBody
+    public Boolean  clearData() {
+        try {
+            int i = iearService.clearData();
         }catch (Exception e){
             return false;
         }

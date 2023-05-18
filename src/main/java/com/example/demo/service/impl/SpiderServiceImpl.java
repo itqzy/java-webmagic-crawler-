@@ -4,8 +4,6 @@ import com.example.demo.common.Gear;
 import com.example.demo.common.GetBeanUtils;
 import com.example.demo.service.IGearService;
 import org.assertj.core.util.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -54,6 +52,7 @@ public class SpiderServiceImpl implements PageProcessor {
         List<String> all = xpath.xpath("//div[@class='centertex']").xpath("//h3/text()").all();
         all.remove(0);
 
+
         //名称
         List<String> all3 = xpath.xpath("//div[@class='centertex']").xpath("//p/text()").all();
 
@@ -63,6 +62,9 @@ public class SpiderServiceImpl implements PageProcessor {
         //内容
         List<String> all2 = xpath.xpath("//p").all();
 
+        //图片
+        List<String> all4 = xpath.$("img", "src").all();
+        all4.remove(0);
 
         HashMap<String, String> map = new HashMap(14);
 
@@ -80,7 +82,7 @@ public class SpiderServiceImpl implements PageProcessor {
                if (all2.get(j).startsWith("<p>模数")){
                    String s = all2.get(j);
                    String substring = s.substring(3);
-                   String substring1 = substring.substring(0,substring.length() - 3);
+                   String substring1 = substring.substring(0,substring.length() - 4);
                    String[] brs = substring1.split("<br>");
                    for (String br : brs) {
                        String[] split = br.split(":");
@@ -118,13 +120,16 @@ public class SpiderServiceImpl implements PageProcessor {
             gear.setGearToothMachining(map.get("齿面加工 "));
             gear.setGearPrecision(map.get("齿轮精度 "));
 
+            gear.setImg(all4.get(i));
+
             list.add(gear);
 
         }
 
+        IGearService bean = GetBeanUtils.getBean(IGearService.class);
+
         // 保存到数据库
         for (Gear gear : list) {
-            IGearService bean = GetBeanUtils.getBean(IGearService.class);
            bean.addGear(gear);
         }
 

@@ -26,4 +26,9 @@ public interface IGearService {
      * 新增实体
      **/
     int addGear(Gear gear);
+
+    /**
+     *  删除数据
+     **/
+    int clearData();
 }

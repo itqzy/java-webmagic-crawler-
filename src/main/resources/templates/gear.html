@@ -8,9 +8,16 @@
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{js/popper.min.js}"></script>
 </head>
-<body>
-<h2>齿轮类型</h2>
-<button type="button" class="btn btn-success" style="margin-left: 92%">开始抓取数据</button>
+<body style="background-color: aliceblue;">
+<h2 style="margin-top: 2%">齿轮类型</h2>
+
+
+<div style="    margin-left: 88%;">
+    <button type="button" class="btn btn-success" style="margin-right: 9%;" onclick="clearData()">清除缓存数据</button>
+
+    <button type="button" class="btn btn-success"  onclick="startWebMagic()">开始抓取数据</button>
+</div>
+
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
@@ -24,16 +31,16 @@
         <a class="nav-link" data-toggle="tab" href="#menu2">齿条</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu2">蜗轮蜗杆</a>
+        <a class="nav-link" data-toggle="tab" href="#menu3">蜗轮蜗杆</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu2">锥齿轮</a>
+        <a class="nav-link" data-toggle="tab" href="#menu4">锥齿轮</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu2">等径锥齿轮</a>
+        <a class="nav-link" data-toggle="tab" href="#menu5">等径锥齿轮</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#menu2">内齿轮</a>
+        <a class="nav-link" data-toggle="tab" href="#menu6">内齿轮</a>
     </li>
 </ul>
 
@@ -42,51 +49,331 @@
 <div class="tab-content">
     <div id="home" class="container tab-pane active"><br>
 
-        <h3>HOME</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <table class="table table-hover">
+            <tr>
+                <!--                <td>id</td>-->
+                <!--                <td>类型</td>-->
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+                <!--                <td>全长</td>-->
+                <!--                <td>头数</td>-->
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas0}">
+                <!--                <td th:text="${data.id}"></td>-->
+                <!--                <td th:text="${data.type}"></td>-->
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+                <!--                <td th:text="${data.totalLength}"></td>-->
+                <!--                <td th:text="${data.headCount}"></td>-->
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+
+
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
-        <h3>Menu 1</h3>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <table class="table table-hover">
+            <tr>
+
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas1}">
+
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
     </div>
     <div id="menu2" class="container tab-pane fade"><br>
-        <h3>Menu 2</h3>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+
+        <table class="table table-hover">
+            <tr>
+
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+                <td>全长</td>
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas2}">
+
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+                <td th:text="${data.totalLength}"></td>
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="menu3" class="container tab-pane fade"><br>
+
+        <table class="table table-hover">
+            <tr>
+
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+                <td>头数</td>
+
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas3}">
+
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+                <td th:text="${data.headCount}"></td>
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="menu4" class="container tab-pane fade"><br>
+
+        <table class="table table-hover">
+            <tr>
+
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas4}">
+
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="menu5" class="container tab-pane fade"><br>
+
+        <table class="table table-hover">
+            <tr>
+
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas5}">
+
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
+    </div>
+    <div id="menu6" class="container tab-pane fade"><br>
+
+        <table class="table table-hover">
+            <tr>
+
+                <td>序号</td>
+                <td>型号</td>
+                <td>名称</td>
+                <td>模数</td>
+                <td>材料</td>
+                <td>热处理</td>
+
+                <td>齿面加工</td>
+                <td>齿轮精度</td>
+                <td>图片</td>
+
+                <td>备注</td>
+            </tr>
+            <tr th:each="data : ${datas6}">
+
+                <td th:text="${data.indexNumber}"></td>
+                <td th:text="${data.model}"></td>
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.modulus}"></td>
+                <td th:text="${data.materials}"></td>
+                <td th:text="${data.heatTreatment}"></td>
+
+                <td th:text="${data.gearToothMachining}"></td>
+                <td th:text="${data.gearPrecision}"></td>
+
+                <td>
+                    <img decoding="async" th:src="${data.img}" class="img-thumbnail" alt="Cinque Terre">
+
+                </td>
+                <td th:text="${data.remarks}"></td>
+            </tr>
+        </table>
     </div>
 </div>
 
-<table  class="table table-hover">
-    <tr>
-        <td>id</td>
-        <td>类型</td>
-        <td>序号</td>
-        <td>型号</td>
-        <td>名称</td>
-        <td>模数</td>
-        <td>材料</td>
-        <td>热处理</td>
-        <td>全长</td>
-        <td>头数</td>
-        <td>齿面加工</td>
-        <td>齿轮精度</td>
-        <td>备注</td>
-    </tr>
-    <tr th:each="data : ${datas}">
-        <td th:text="${data.id}"></td>
-        <td th:text="${data.type}"></td>
-        <td th:text="${data.indexNumber}"></td>
-        <td th:text="${data.model}"></td>
-        <td th:text="${data.name}"></td>
-        <td th:text="${data.modulus}"></td>
-        <td th:text="${data.materials}"></td>
-        <td th:text="${data.heatTreatment}"></td>
-        <td th:text="${data.totalLength}"></td>
-        <td th:text="${data.headCount}"></td>
-        <td th:text="${data.gearToothMachining}"></td>
-        <td th:text="${data.gearPrecision}"></td>
-        <td th:text="${data.remarks}"></td>
-
-    </tr>
-</table>
 </body>
+<script>
+    function startWebMagic() {
+        $.ajax({
+            type: "get",// get或者post
+            url: "/startWebMagic",// 请求的url地址
+            beforeSend: function () {
+                // 发送之前就会进入这个函数
+                // return false 这个ajax就停止了不会发 如果没有return false 就会继续
+            },
+            success: function (data) { // 成功拿到结果放到这个函数 data就是拿到的结果
+                if (data == true) {
+                    location.reload();
+                    alert("爬取成功")
+                } else {
+                    alert("爬取失败")
+                }
+            },
+            error: function () {//失败的函数
+            },
+            complete: function () {//不管成功还是失败 都会进这个函数
+            }
+        })
+    }
+    function clearData(){
+        $.ajax({
+            type: "get",// get或者post
+            url: "/clearData",// 请求的url地址
+            beforeSend: function () {
+                // 发送之前就会进入这个函数
+                // return false 这个ajax就停止了不会发 如果没有return false 就会继续
+            },
+            success: function (data) { // 成功拿到结果放到这个函数 data就是拿到的结果
+                if (data == true) {
+                    location.reload();
+                    alert("清除成功")
+                } else {
+                    alert("清除失败")
+                }
+            },
+            error: function () {//失败的函数
+            },
+            complete: function () {//不管成功还是失败 都会进这个函数
+            }
+        })
+    }
+</script>
+
+<style>
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1865px;
+        }
+    }
+
+</style>
 </html>
